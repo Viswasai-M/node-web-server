@@ -46,11 +46,20 @@ app.get('/', (req, res) => {
   welcomeMessage: 'welcome to my website'
  });
 });
+
+
 app.get('/about', (req, res) => {
   res.render('about.hbs', {
   pageTitle: 'About Page',
 
 });
+});
+
+app.get('/projects', (req, res) => {
+  res.render('projects.hbs', {
+  pageTitle: 'Projects'
+  // welcomeMessage: 'welcome to my website'
+ });
 });
 
 // /bad - send back json with errorMessage
