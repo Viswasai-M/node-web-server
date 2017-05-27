@@ -2,8 +2,10 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+const port = process.env.PORT || 3000;
 var app = express();
 
+hbs.registerPartials(__dirname + '/views/partials')
 app.set('view engine', 'hbs');
 // this one moved after maintenance because site is under maintenance and we do not want anything to be displayed so the public folder
 // public folder like help will also not executable
@@ -22,11 +24,15 @@ fs.appendFile('Server.log', log + '\n', (error)=>{
 })
 next();
   });
-app.use((req, res) =>{
-  res.render('maintenance.hbs', {
-  pageTitle: 'maintenance',
-  welcomeMessage: 'under maintenance'
- });
+// app.use((req, res) =>{
+//   res.render('maintenance.hbs', {
+//   pageTitle: 'maintenance',
+//   welcomeMessage: 'under maintenance'
+//  });
+// });
+
+hbs.registerHelper('getCurrentYear', ()=>{
+  return new Date().getFullYear()
 });
 app.use(express.static(__dirname + '/public'));
 
@@ -54,6 +60,6 @@ app.get('/bad', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('Server is up on port 3000');
+app.listen(port, () => {
+  console.log(`Server is up on port ${port}`);
 });

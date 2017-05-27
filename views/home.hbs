@@ -5,11 +5,10 @@
     <title>Help Page</title>
   </head>
   <body>
-    <h1>{{pageTitle}}</h1>
+    {{> header}}
+    <!-- <h1>{{pageTitle}}</h1> -->
     <p>{{welcomeMessage}}</p>
 
-    <footer>
-      <p>copy {{currentYear}}</p>
-    </footer>
+  {{> footer}}
   </body>
 </html>
